@@ -13,7 +13,9 @@ mermaid:
 ---
 
 # Qu'est-ce qu'un terminal ?
+
 ## Qu'est-ce qu'un terminal ?
+
 ### Qu'est-ce qu'un terminal ?
 
 ls

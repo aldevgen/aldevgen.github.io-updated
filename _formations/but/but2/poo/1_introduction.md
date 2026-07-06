@@ -45,39 +45,33 @@ classDiagram
 Un livre doit présenter les comportements suivants :
 
 - **Constructeur** :
-
   - Créer une fonction `__init__` qui prend en paramètre `title`, `author` et `genre`.
   - Initialise le livre avec un statut disponible : création des attributs `_is_borrowed` et `_is_reserved` (booléens définis par défaut à `False`).
     <br/><br/>
 
 - **Présentation du livre** :
-
   - Créer une fonction `present` qui affiche un message indiquant le titre, l'auteur et le genre du livre.
     <br/><br/>
 
 - **Emprunter le livre** :
-
   - Créer une fonction `borrow` qui permet d'emprunter un livre.
   - Si le livre est disponible, changer le statut d'emprunt et afficher un message indiquant que le livre a été emprunté.
   - Si le livre est déjà emprunté, afficher un message indiquant `The book is already borrowed.`.
     <br/><br/>
 
 - **Retourner le livre** :
-
   - Créer une fonction `return` qui permet de retourner un livre.
   - Si le livre est emprunté, changer le statut d'emprunt et afficher un message indiquant que le livre a été retourné.
   - Si le livre est déjà disponible, afficher un message indiquant `The book is available.`.
     <br/><br/>
 
 - **Réserver le livre** :
-
   - Créer une fonction `reserve` qui permet de réserver un livre.
   - Si le livre est disponible, changer le statut de réservation et afficher un message indiquant que le livre a été réservé.
   - Si le livre est emprunté ou déjà réservé, afficher un message indiquant `The book is already reserved.`.
     <br/><br/>
 
 - **Annuler la réservation** :
-
   - Créer une fonction `cancel` qui permet d'annuler la réservation d'un livre.
   - Si le livre est réservé, changer le statut de réservation et afficher un message indiquant que la réservation a été annulée.
   - Si le livre n'est pas réservé, afficher un message indiquant `The book is not reserved.`.
@@ -122,18 +116,17 @@ The reservation of the book Normal people has been canceled successfully.
 >
 > - Les noms de classes doivent commencer par une majuscule et utiliser la notation CamelCase.
 > - Les noms de fichiers doivent être en minuscules et séparés par des underscores.
-{: .block-warning }
+>   {: .block-warning }
 
 > #### Exemples
 >
 > - Classe animal
 >   - nom du fichier : `animal.py`
 >   - nom de la classe : `class Animal`
->
 > - Classe sea anemone
 >   - nom du fichier : `sea_anemone.py`
 >   - nom de la classe : `class SeaAnemone`
-{: .block-example }
+>     {: .block-example }
 
 ### TO-DO
 
@@ -169,49 +162,41 @@ classDiagram
 Une fraction doit présenter les comportements suivants :
 
 - **Constructeur** :
-
   - Prend en paramètre `numerator` et `denominator`.
   - Initialise la fraction avec les valeurs passées en paramètre.
     <br/><br/>
 
 - **Affichage de la fraction** :
-
   - Affiche la fraction au format texte : `numerator/denominator`.
     <br/><br/>
 
 - **Addition de fractions** :
-
   - Créer une fonction `add` qui additionne deux fractions (prend en paramètre une fraction).
   - Retourne une nouvelle fraction correspondant à l'addition des deux fractions.
     <br/><br/>
 
 - **Soustraction de fractions** :
-
   - Créer une fonction `subtract` qui soustrait deux fractions (prend en paramètre une fraction).
   - Retourne une nouvelle fraction correspondant à la soustraction des deux fractions.
     <br/><br/>
 
 - **Multiplication de fractions** :
-
   - Créer une fonction `multiply` qui multiplie deux fractions (prend en paramètre une fraction).
   - Retourne une nouvelle fraction correspondant à la multiplication des deux fractions.
     <br/><br/>
 
 - **Division de fractions** :
-
   - Créer une fonction `divide` qui divise deux fractions (prend en paramètre une fraction).
   - Retourne une nouvelle fraction correspondant à la division des deux fractions.
     <br/><br/>
 
 - **Inverse d'une fraction** :
-
-    - Créer une fonction `inverse` qui retourne l'inverse de la fraction.
-        <br/><br/>
+  - Créer une fonction `inverse` qui retourne l'inverse de la fraction.
+    <br/><br/>
 
 - **Simplification d'une fraction** :
-
-    - Créer une fonction `simplify` qui simplifie une fraction, par exemple $$\frac{2}{4}$$ devient $$\frac{1}{2}$$.
-        <br/><br/>
+  - Créer une fonction `simplify` qui simplifie une fraction, par exemple $$\frac{2}{4}$$ devient $$\frac{1}{2}$$.
+    <br/><br/>
 
 Rappels sur les fonctions mathématiques :
 

@@ -138,6 +138,7 @@ classDiagram
 **Question 1 : Classe `AbstractMagicalItem`**
 
 Créer une classe abstraite `AbstractMagicalItem` (fichier `abstract_magical_item.py`) avec :
+
 - **Attributs** :
   - `name` : nom de l'objet magique
   - `power` : puissance de l'objet
@@ -287,14 +288,12 @@ classDiagram
 ```
 
 1. **Créer une classe `Shape`** (fichier `shape.py`) :
-
    - Cette classe sera une classe abstraite pour les formes géométriques (forme de base).
    - Elle doit contenir une méthode abstraite `area()` qui sert à calculer l'aire de la forme.
    - Elle doit contenir une méthode abstraite `perimeter()` qui sert à calculer le périmètre de la forme.
      <br/><br/>
 
 2. **Créer une classe `Rectangle`** (fichier `rectangle.py`) :
-
    - Le rectangle hérite de `Shape`.
    - Le rectangle est défini par une longueur ($$length$$) et une largeur ($$width$$).
    - Implémenter les méthodes `area()` et `perimeter()` pour cette classe :
@@ -303,7 +302,6 @@ classDiagram
        <br/><br/>
 
 3. **Créer une classe `Square`** (fichier `square.py`) :
-
    - Le carré hérite de `Rectangle`.
    - Le carré est une forme spéciale de rectangle où $$length$$ et $$width$$ sont égaux.
    - Le constructeur de la classe `Square` doit prendre un seul paramètre `side` pour définir la longueur du côté.
@@ -311,7 +309,6 @@ classDiagram
      <br/><br/>
 
 4. **Créer une classe `Circle`** (fichier `circle.py`) :
-
    - Le cercle hérite de `Shape`.
    - Le cercle est défini par un rayon ($$radius$$).
    - Implémenter les méthodes `area()` et `perimeter()` pour cette classe :
@@ -367,25 +364,21 @@ classDiagram
 ```
 
 1. Classe `Professor` : représente un professeur
-
    - **Méthode** :
      - `__str__()` : Retourne une chaîne décrivant le professeur.
 
 2. Classe `Department` : représente un département regroupant des professeurs
-
    - **Méthodes** :
      - `add_professor(professor: Professor)` : Ajouter un professeur au département (maximum 5 par département).
      - `remove_professor(professor: Professor)` : Retire un professeur du département.
      - `__str__()` : Retourne une description complète du département et ses professeurs.
 
 3. Classe `Faculty` : représente une faculté composée de départements
-
    - **Méthodes** :
      - `add_department(department: Department)` : Ajoute un département à la faculté.
      - `__str__()` : Retourne une description complète de la faculté et ses départements.
 
 4. Classe `University` : représente une université composée de facultés
-
    - **Méthodes** :
      - `create_faculty(name: str)` : Crée et ajoute une faculté à l'université.
      - `__str__()` : Retourne une description complète de l'université et ses facultés.
@@ -450,14 +443,12 @@ classDiagram
 :warning: **Attention** : Pour cet exercice, chaque classe doit être documentée avec des commentaires pour expliquer le rôle de la classe, les attributs et les méthodes.
 
 1. **Créer une classe `Book`** (fichier `book.py`) :
-
    - Cette classe représente un livre avec des attributs tels que le titre, l'auteur et l'année de publication.
    - Elle doit contenir une méthode `__str__()` qui affiche les informations du livre.
    - Elle doit contenir une méthode `get_title()` qui retourne le titre du livre.
      <br/><br/>
 
 2. **Créer une classe `Library`** (fichier `library.py`) :
-
    - Cette classe représente une bibliothèque qui contient une collection de livres.
    - Une bibliothèque est identifiée par un nom et une adresse.
    - Elle doit contenir une méthode `add_book(book: Book)` qui ajoute un livre à la bibliothèque.
@@ -466,7 +457,6 @@ classDiagram
      <br/><br/>
 
 3. **Créer un programme principal** (fichier `main.py`) :
-
    - Créer les livres suivants :
      - "Normal People" de Sally Rooney, paru en 2018
      - "The Great Gatsby" de F. Scott Fitzgerald, paru en 1925

@@ -30,30 +30,30 @@ Pour ce TP, nous utiliserons les données **movies** qui contiennent des informa
     href="https://raw.githubusercontent.com/aldevgen/data/main/json/movies.json"
     download="movies.json"
     rel="noopener noreferrer">
-    <button><i class="fa fa-download"></i> Données movies</button>
+<button><i class="fa fa-download"></i> Données movies</button>
 </a>
 
 Le tableau, ci-dessous, présente les données ainsi qu'un exemple du format attendu
 
-| Colonne          | Type   | Description                                                     | Exemple                                                    |
-|------------------|--------|-----------------------------------------------------------------|------------------------------------------------------------|
-| title            | string | Titre du film                                                   | Intolerance: Love's Struggle Throughout the Ages           |
-| year             | int    | Année de sortie du film                                         | 1916                                                       |
-| genres           | list   | Liste des genres du film                                        | ["Drama", "History"]                                       |
-| cast             | list   | Liste des acteurs principaux                                    | ["Lillian Gish", "Spottiswoode Aitken", "Mary Alden"]      |
-| directors        | list   | Liste des réalisateurs du film                                  | ["D.W. Griffith"]                                          |
-| writers          | list   | Liste des scénaristes du film                                   | ["D.W. Griffith", "Anita Loos"]                            |
-| countries        | list   | Liste des pays de production                                    | ["USA"]                                                    |
-| languages        | list   | Langues du film                                                 | ["English"]                                                |
-| plot             | string | Résumé court du film                                            | The story of a poor young woman, separated by prejudice... |
-| fullplot         | string | Résumé détaillé du film                                         | Intolerance and its terrible effects are examined in...    |
-| imdb.rating      | float  | Note IMDb du film                                               | 8.0                                                        |
-| imdb.votes       | int    | Nombre de votes IMDb                                            | 9880                                                       |
-| tomatoes.viewer.rating | float | Note des spectateurs Rotten Tomatoes                       | 3.8                                                        |
-| tomatoes.viewer.numReviews | int | Nombre de critiques des spectateurs sur Rotten Tomatoes  | 4718                                                       |
-| tomatoes.viewer.metter | int | Notes des critiques sur Rotten Tomatoes                      | 77                                                         |
-| awards           | object | Prix du film                                                    | {"wins": 1, "nominations": 0, "text": "1 win."}            |
-| type             | string | Type du contenu (film, série, etc.)                             | movie                                                      |
+| Colonne                    | Type   | Description                                             | Exemple                                                    |
+| -------------------------- | ------ | ------------------------------------------------------- | ---------------------------------------------------------- |
+| title                      | string | Titre du film                                           | Intolerance: Love's Struggle Throughout the Ages           |
+| year                       | int    | Année de sortie du film                                 | 1916                                                       |
+| genres                     | list   | Liste des genres du film                                | ["Drama", "History"]                                       |
+| cast                       | list   | Liste des acteurs principaux                            | ["Lillian Gish", "Spottiswoode Aitken", "Mary Alden"]      |
+| directors                  | list   | Liste des réalisateurs du film                          | ["D.W. Griffith"]                                          |
+| writers                    | list   | Liste des scénaristes du film                           | ["D.W. Griffith", "Anita Loos"]                            |
+| countries                  | list   | Liste des pays de production                            | ["USA"]                                                    |
+| languages                  | list   | Langues du film                                         | ["English"]                                                |
+| plot                       | string | Résumé court du film                                    | The story of a poor young woman, separated by prejudice... |
+| fullplot                   | string | Résumé détaillé du film                                 | Intolerance and its terrible effects are examined in...    |
+| imdb.rating                | float  | Note IMDb du film                                       | 8.0                                                        |
+| imdb.votes                 | int    | Nombre de votes IMDb                                    | 9880                                                       |
+| tomatoes.viewer.rating     | float  | Note des spectateurs Rotten Tomatoes                    | 3.8                                                        |
+| tomatoes.viewer.numReviews | int    | Nombre de critiques des spectateurs sur Rotten Tomatoes | 4718                                                       |
+| tomatoes.viewer.metter     | int    | Notes des critiques sur Rotten Tomatoes                 | 77                                                         |
+| awards                     | object | Prix du film                                            | {"wins": 1, "nominations": 0, "text": "1 win."}            |
+| type                       | string | Type du contenu (film, série, etc.)                     | movie                                                      |
 
 Voici un exemple de données :
 
@@ -63,31 +63,17 @@ Voici un exemple de données :
     "$oid": "573a13e9f29313caabdcd99c"
   },
   "plot": "An imaginative children's film about a young Australian boy's passion for flight and his challenge to compete in the World Paper Plane Championships in Japan.",
-  "genres": [
-    "Family"
-  ],
-  "cast": [
-    "Ed Oxenbould",
-    "Sam Worthington",
-    "Julian Dennison",
-    "Peter Rowsthorn"
-  ],
+  "genres": ["Family"],
+  "cast": ["Ed Oxenbould", "Sam Worthington", "Julian Dennison", "Peter Rowsthorn"],
   "num_mflix_comments": 2,
   "title": "Paper Planes",
   "fullplot": "An imaginative children's film about a young Australian boy's passion for flight and his challenge to compete in the World Paper Plane Championships in Japan.",
-  "languages": [
-    "English"
-  ],
+  "languages": ["English"],
   "released": {
     "$date": "2015-01-15T00:00:00Z"
   },
-  "directors": [
-    "Robert Connolly"
-  ],
-  "writers": [
-    "Robert Connolly",
-    "Steve Worland"
-  ],
+  "directors": ["Robert Connolly"],
+  "writers": ["Robert Connolly", "Steve Worland"],
   "awards": {
     "wins": 1,
     "nominations": 4,
@@ -100,9 +86,7 @@ Voici un exemple de données :
     "votes": 1635,
     "id": 3328716
   },
-  "countries": [
-    "Australia"
-  ],
+  "countries": ["Australia"],
   "type": "movie"
 }
 ```
@@ -116,7 +100,6 @@ Importez les données dans MongoDB Compass et répondez aux questions suivantes 
 3. Afficher le titre et le plot des films réalisés par D.W. Griffith.
 4. Quelles sont les 6 années avec le plus de films produits ?
 5. Combien de films ont été réalisés avant l'année 2000 et ont une note IMDb supérieure à 7 ?
-
 
 # Partie 2
 
@@ -189,7 +172,7 @@ Dans la table `medecins`
 4.1 Affichez les consultations du patient `p88`.
 La requête est-elle valide avec votre modèle ? Justifiez.
 
-4.2 Modifiez le traitement de la consultation `c1023` pour remplacer *Bêta-bloquants* par *Inhibiteurs calciques*.
+4.2 Modifiez le traitement de la consultation `c1023` pour remplacer _Bêta-bloquants_ par _Inhibiteurs calciques_.
 
 4.3 Supprimez la consultation `c1023`.
 

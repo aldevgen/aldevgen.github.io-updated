@@ -20,25 +20,26 @@ mermaid:
 >
 > Les élèves bénéficiant d'un tiers temps sont dispensés de faire les classes `PremiumSubscription` et `FreeSubscription`.
 >
-{: .block-example }
+> {: .block-example }
 
 > #### :exclamation: Consignes
 >
 > L'accès à Internet est autorisé pour **consulter la documentation Python**. Il est **interdit de communiquer** avec d'autres personnes ou d'**utiliser des outils d'Intelligence Artificielle** tels que ChatGPT. **En cas de triche, la note de 0 sera attribuée.**
 >
-{: .block-danger }
+> {: .block-danger }
 
 > #### :information_source: Barème
 >
 > Les conventions de nommage ainsi que toutes les règles de bonnes pratiques seront prises en compte dans la notation. Au moins une classe doit être complètement documentée.
 >
-{: .block-warning }
+> {: .block-warning }
 
 ## :movie_camera: Gestion d'un système de films et de séries
 
 Alexandra Chen, directrice technique de StreamFlow Studios, vous demande de créer une application de gestion de films et de séries. Cette application doit pouvoir gérer le visionnage des films, des séries ainsi que leurs évaluations. Vous êtes développeur.se au sein de SteamFlow Studios. Vous devez implémenter un système orienté objet pour gérer les contenus, les utilisateurs et les abonnements.
 
 StreamFlix propose deux types d'abonnements :
+
 - Gratuit : contenu avec publicités, qualité standard
 - Premium : contenu sans publicité, haute qualité
 
@@ -136,50 +137,50 @@ classDiagram
     User *-- "0..*" WatchHistory : records
     WatchHistory o-- Content : tracks
 ```
+
 ### Documentation des classes
 
 **Contenus**
 
-| Attribut/Méthode                             | Description                                        |
-|----------------------------------------------|----------------------------------------------------|
-| `id`                                         | Identifiant du film                                |
-| `title`                                      | Titre du contenu                                   |
-| `genre`                                      | Genre du contenu.
-| `year`	                                      | Année de sortie.                                   |
-| `ratings`	                                   | Liste des évaluations du contenu.                  |
-| `duration`	                                  | Durée du contenu en minutes.                       |
-| `__init__(id, title, genre, year, duration)` | 	Constructeur de la classe Content.                |
-| `get_id()`                                   | 	Retourne l'identifiant du contenu.                |
-| `get_title()`	                               | Retourne le titre du contenu.                      |
-| `rating (property)`                          | 	Propriété calculée renvoyant la note moyenne.     |
-| `add_rating(rating: int)`                    | 	Ajoute une évaluation au contenu. La note doit être comprise entre 1 et 10, sinon une exception `InvalidRatingError` doit être levée.                |
-| `__eq__(other)`                              | 	Compare si deux contenus ont le même identifiant. |
+| Attribut/Méthode                             | Description                                                                                                                           |
+| -------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`                                         | Identifiant du film                                                                                                                   |
+| `title`                                      | Titre du contenu                                                                                                                      |
+| `genre`                                      | Genre du contenu.                                                                                                                     |
+| `year`                                       | Année de sortie.                                                                                                                      |
+| `ratings`                                    | Liste des évaluations du contenu.                                                                                                     |
+| `duration`                                   | Durée du contenu en minutes.                                                                                                          |
+| `__init__(id, title, genre, year, duration)` | Constructeur de la classe Content.                                                                                                    |
+| `get_id()`                                   | Retourne l'identifiant du contenu.                                                                                                    |
+| `get_title()`                                | Retourne le titre du contenu.                                                                                                         |
+| `rating (property)`                          | Propriété calculée renvoyant la note moyenne.                                                                                         |
+| `add_rating(rating: int)`                    | Ajoute une évaluation au contenu. La note doit être comprise entre 1 et 10, sinon une exception `InvalidRatingError` doit être levée. |
+| `__eq__(other)`                              | Compare si deux contenus ont le même identifiant.                                                                                     |
 
 ---
 
 **Films**
 
-| Attribut/Méthode                             | Description                                                     |
-|----------------------------------------------|-----------------------------------------------------------------|
-| `__init__(id, title, genre, year, duration)` | Constructeur de la classe Movie.                                |
-| `is_long_movie()`                            | Indique si le film est dure plus de 2 heures (120 minutes).     |
-| `__str__()`                                  | Retourne une représentation textuelle de l'objet Movie.         |
-| `__eq__(other)`	                             | Compare si deux films ont le même ID et même titre.             |
-
+| Attribut/Méthode                             | Description                                                 |
+| -------------------------------------------- | ----------------------------------------------------------- |
+| `__init__(id, title, genre, year, duration)` | Constructeur de la classe Movie.                            |
+| `is_long_movie()`                            | Indique si le film est dure plus de 2 heures (120 minutes). |
+| `__str__()`                                  | Retourne une représentation textuelle de l'objet Movie.     |
+| `__eq__(other)`                              | Compare si deux films ont le même ID et même titre.         |
 
 ---
 
 **Séries**
 
-| Attribut/Méthode                                                                        | Description                                               |
-|-----------------------------------------------------------------------------------------|-----------------------------------------------------------|
-| `num_seasons`                                                                           | 	Nombre de saisons.                                       |
-| `episodes_per_season`                                                                   | 	Liste du nombre d'épisodes par saison.                   |
-| `ongoing`                                                                               | 	Indique si la série est toujours en cours.               |
-| `__init__(id, title, genre, year, duration, num_seasons, episodes_per_season, ongoing)` | 	Constructeur de la classe Series.                        |
-| `total_episodes()`                                                                      | 	Calcule le nombre total d'épisodes.                      |
-| `__str__()`                                                                             | 	Retourne une représentation textuelle de l'objet Series. |
-| `__lt__(other: Series)`                                                                 | 	Compare quelle série est la plus longue.                 |
+| Attribut/Méthode                                                                        | Description                                              |
+| --------------------------------------------------------------------------------------- | -------------------------------------------------------- |
+| `num_seasons`                                                                           | Nombre de saisons.                                       |
+| `episodes_per_season`                                                                   | Liste du nombre d'épisodes par saison.                   |
+| `ongoing`                                                                               | Indique si la série est toujours en cours.               |
+| `__init__(id, title, genre, year, duration, num_seasons, episodes_per_season, ongoing)` | Constructeur de la classe Series.                        |
+| `total_episodes()`                                                                      | Calcule le nombre total d'épisodes.                      |
+| `__str__()`                                                                             | Retourne une représentation textuelle de l'objet Series. |
+| `__lt__(other: Series)`                                                                 | Compare quelle série est la plus longue.                 |
 
 ---
 
@@ -187,14 +188,14 @@ classDiagram
 
 La classe `Subscription` définit les méthodes et attributs communs à tous les abonnements.
 
-| Attribut/Méthode | Description |
-|-----------------|-------------|
-| `viewed_time` | Temps de visionnage cumulé en minutes |
-| `__init__()` | Constructeur initialisant le temps de visionnage à 0 |
+| Attribut/Méthode                      | Description                                                  |
+| ------------------------------------- | ------------------------------------------------------------ |
+| `viewed_time`                         | Temps de visionnage cumulé en minutes                        |
+| `__init__()`                          | Constructeur initialisant le temps de visionnage à 0         |
 | `can_watch(content: Content) -> bool` | Méthode abstraite déterminant si un média peut être visionné |
-| `add_viewing_time(duration: int)` | Méthode ajoutant du temps au compteur de visionnage |
-| `show_advertisement()` | Méthode gérant l'affichage des publicités |
-| `is_premium() -> bool` | Méthode abstraite indiquant si l'abonnement est premium |
+| `add_viewing_time(duration: int)`     | Méthode ajoutant du temps au compteur de visionnage          |
+| `show_advertisement()`                | Méthode gérant l'affichage des publicités                    |
+| `is_premium() -> bool`                | Méthode abstraite indiquant si l'abonnement est premium      |
 
 ---
 
@@ -202,12 +203,12 @@ La classe `Subscription` définit les méthodes et attributs communs à tous les
 
 La classe `FreeSubscription` définit les méthodes et attributs spécifiques à l'abonnement gratuit. Un abonnement gratuit a une limite de temps de visionnage de 2 heures (120 minutes) par mois.
 
-| Attribut/Méthode | Description                                                             |
-|------------------|-------------------------------------------------------------------------|
+| Attribut/Méthode                      | Description                                                             |
+| ------------------------------------- | ----------------------------------------------------------------------- |
 | `can_watch(content: Content) -> bool` | Vérifie si le temps cumulé + la durée du média ne dépasse pas la limite |
-| `add_viewing_time(duration: int)` | Ajoute la durée du média visionné au compteur de temps                  |
-| `show_advertisement()` | Affiche une publicité (texte) pour l'abonnement premium                 |
-| `is_premium() -> bool` | Retourne toujours `False` car c'est un abonnement gratuit               |
+| `add_viewing_time(duration: int)`     | Ajoute la durée du média visionné au compteur de temps                  |
+| `show_advertisement()`                | Affiche une publicité (texte) pour l'abonnement premium                 |
+| `is_premium() -> bool`                | Retourne toujours `False` car c'est un abonnement gratuit               |
 
 ---
 
@@ -215,12 +216,12 @@ La classe `FreeSubscription` définit les méthodes et attributs spécifiques à
 
 La classe `PremiumSubscription` définit les méthodes et attributs spécifiques à l'abonnement premium.
 
-| Attribut/Méthode | Description |
-|------------------|-------------|
+| Attribut/Méthode                      | Description                                                                  |
+| ------------------------------------- | ---------------------------------------------------------------------------- |
 | `can_watch(content: Content) -> bool` | Retourne toujours `True` car aucune limite de temps pour les abonnés premium |
-| `add_viewing_time(duration: int)` | Ne fait rien car pas de limite de temps pour les abonnements premium |
-| `show_advertisement()` | Ne fait rien car pas de publicités pour les abonnements premium |
-| `is_premium() -> bool` | Retourne toujours `True` car c'est un abonnement premium |
+| `add_viewing_time(duration: int)`     | Ne fait rien car pas de limite de temps pour les abonnements premium         |
+| `show_advertisement()`                | Ne fait rien car pas de publicités pour les abonnements premium              |
+| `is_premium() -> bool`                | Retourne toujours `True` car c'est un abonnement premium                     |
 
 ---
 
@@ -228,13 +229,13 @@ La classe `PremiumSubscription` définit les méthodes et attributs spécifiques
 
 La classe `WatchHistory` permet de stocker les contenus visionnés par les utilisateurs.
 
-| Attribut/Méthode | Description |
-|------------------|-------------|
-| `history` | Dictionnaire stockant les contenus visionnés par les utilisateurs |
-| `__init__()` | Constructeur initialisant l'historique |
-| `add_entry(user_id, content, timestamp)` | Ajoute une entrée à l'historique |
-| `get_history(user_id)` | Retourne l'historique d'un utilisateur |
-| `most_watched_genre(user_id)` | Retourne le genre le plus visionné par un utilisateur |
+| Attribut/Méthode                         | Description                                                       |
+| ---------------------------------------- | ----------------------------------------------------------------- |
+| `history`                                | Dictionnaire stockant les contenus visionnés par les utilisateurs |
+| `__init__()`                             | Constructeur initialisant l'historique                            |
+| `add_entry(user_id, content, timestamp)` | Ajoute une entrée à l'historique                                  |
+| `get_history(user_id)`                   | Retourne l'historique d'un utilisateur                            |
+| `most_watched_genre(user_id)`            | Retourne le genre le plus visionné par un utilisateur             |
 
 ---
 
@@ -242,15 +243,15 @@ La classe `WatchHistory` permet de stocker les contenus visionnés par les utili
 
 Un utilisateur dispose d'un abonnement et d'un historique.
 
-| Attribut/Méthode | Description                                                                      |
-|------------------|----------------------------------------------------------------------------------|
-| `id` | Identifiant de l'utilisateur                                                     |
-| `username` | Nom d'utilisateur                                                                |
-| `email` | Adresse email                                                                    |
-| `subscription` | Abonnement de l'utilisateur                                                      |
-| `watch_history` | Historique de visionnage de l'utilisateur                                        |
+| Attribut/Méthode                | Description                                                                      |
+| ------------------------------- | -------------------------------------------------------------------------------- |
+| `id`                            | Identifiant de l'utilisateur                                                     |
+| `username`                      | Nom d'utilisateur                                                                |
+| `email`                         | Adresse email                                                                    |
+| `subscription`                  | Abonnement de l'utilisateur                                                      |
+| `watch_history`                 | Historique de visionnage de l'utilisateur                                        |
 | `__init__(id, username, email)` | Constructeur de la classe User                                                   |
-| `watch(content: Content)` | Méthode permettant à l'utilisateur de visionner un contenu (cf note ci-dessous). |
+| `watch(content: Content)`       | Méthode permettant à l'utilisateur de visionner un contenu (cf note ci-dessous). |
 
 ---
 
@@ -263,52 +264,52 @@ Pour les utilisateurs avec un abonnement gratuit, une publicité s'affiche au d�
 ### Programme principal
 
 Créer un fichier main avec :
+
 - Film Inception (Identifiant : `7882`, Genre : Sci-Fi, Année : 2010, Durée : 148 minutes)
 - Film The Dark Knight (Identifiant : `6824`, Genre : Action, Année : 2008, Durée : 152 minutes)
 - Film Whiplash (Identifiant : `9823`, Genre : Drama, Année : 2014, Durée : 106 minutes)
 - Série Breaking Bad (Identifiant : `3356`, Genre : Drame, Année : 2008, Durée : 45 minutes, 5 saisons)
-  * Saison 1 : 7 épisodes
-  * Saison 2 : 13 épisodes
-  * Saison 3 : 13 épisodes
-  * Saison 4 : 13 épisodes
-  * Saison 5 : 16 épisodes
-  * Série terminée
+  - Saison 1 : 7 épisodes
+  - Saison 2 : 13 épisodes
+  - Saison 3 : 13 épisodes
+  - Saison 4 : 13 épisodes
+  - Saison 5 : 16 épisodes
+  - Série terminée
 - Série Game of Thrones (Identifiant : `6831`, Genre : Fantasy, Année : 2011, Durée : 1050 minutes, 8 saisons)
-  * Saison 1 : 10 épisodes
-  * Saison 2 : 10 épisodes
-  * Saison 3 : 10 épisodes
-  * Saison 4 : 10 épisodes
-  * Saison 5 : 10 épisodes
-  * Saison 6 : 10 épisodes
-  * Saison 7 : 7 épisodes
-  * Saison 8 : 6 épisodes
-  * Série terminée
+  - Saison 1 : 10 épisodes
+  - Saison 2 : 10 épisodes
+  - Saison 3 : 10 épisodes
+  - Saison 4 : 10 épisodes
+  - Saison 5 : 10 épisodes
+  - Saison 6 : 10 épisodes
+  - Saison 7 : 7 épisodes
+  - Saison 8 : 6 épisodes
+  - Série terminée
 - Série Stranger Things (Identifiant : `9650`, Genre : Sci-Fi, Année : 2016, Durée : 850 minutes, 4 saisons)
-  * Saison 1 : 8 épisodes
-  * Saison 2 : 9 épisodes
-  * Saison 3 : 8 épisodes
-  * Saison 4 : 9 épisodes
-  * Série en cours
+  - Saison 1 : 8 épisodes
+  - Saison 2 : 9 épisodes
+  - Saison 3 : 8 épisodes
+  - Saison 4 : 9 épisodes
+  - Série en cours
 - Compare quelle série est la plus longue entre Stranger Things et Game of Thrones
 - Création d'un utilisateur avec un abonnement gratuit
-  * Identifiant : `13579`
-  * Username : Amelya
-  * Email : amelya@mail.com
-  * Visionner Inception
-  * Visionner la saison 1 de Breaking Bad
-  * Noter Inception (10)
-  * Visionner la saison 1 de Game of Thrones
+  - Identifiant : `13579`
+  - Username : Amelya
+  - Email : amelya@mail.com
+  - Visionner Inception
+  - Visionner la saison 1 de Breaking Bad
+  - Noter Inception (10)
+  - Visionner la saison 1 de Game of Thrones
 - Création d'un utilisateur avec un abonnement premium
-  * Identifiant : `2468`
-  * Username : Sarah
-  * Email: sarah@mail.com
-  * Visionner The Dark Knight
-  * Noter The Dark Knight (9)
-  * Visionner la saison 1 de Stranger Things
-  * Visionner la saison 2 de Stranger Things
-  * Noter la série Stranger Things (8)
-  * Visionner la saison 3 de Stranger Things
-
+  - Identifiant : `2468`
+  - Username : Sarah
+  - Email: sarah@mail.com
+  - Visionner The Dark Knight
+  - Noter The Dark Knight (9)
+  - Visionner la saison 1 de Stranger Things
+  - Visionner la saison 2 de Stranger Things
+  - Noter la série Stranger Things (8)
+  - Visionner la saison 3 de Stranger Things
 
 ### Tests unitaires
 

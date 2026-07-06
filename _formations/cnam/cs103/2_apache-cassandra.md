@@ -23,14 +23,15 @@ Pour mieux comprendre les commandes CQL, nous allons utiliser un exemple de donn
 ### Table `utilisateurs`
 
 La table `utilisateurs` contient les informations des utilisateurs de la bibliothèque :
+
 - `id` : identifiant unique de l'utilisateur
 - `nom` : nom de l'utilisateur
 - `age` : âge de l'utilisateur
 
 Ci-dessous un exemple de données pour la table `utilisateurs` :
 
-| id                      | nom    | age |
-|-------------------------|---------|-----|
+| id                      | nom     | age |
+| ----------------------- | ------- | --- |
 | 6a6148d1-4a56-4d6a-a610 | Alice   | 30  |
 | 79e9b9b4-8b76-4cb7-8419 | Bob     | 23  |
 | cb923190-d658-4471-827d | Charlie | 45  |
@@ -42,6 +43,7 @@ Ci-dessous un exemple de données pour la table `utilisateurs` :
 ### Table `emprunts`
 
 La table `emprunts` contient les informations des emprunts de livres :
+
 - `livre_id` : identifiant du livre emprunté
 - `utilisateur_id` : identifiant de l'utilisateur
 - `emprunt_id` : identifiant unique de l'emprunt
@@ -49,14 +51,14 @@ La table `emprunts` contient les informations des emprunts de livres :
 
 Voici des données pour la table `emprunts` :
 
-| livre_id                  | emprunt_id                 | utilisateur_id                 | date_emprunt             |
-|--------------------------| ----------------------- | ----------------------- |--------------------------|
-| 549d7790-2aa1-4710-88d4  | 437c10d7-5508-4ecf-b821 | 6a6148d1-4a56-4d6a-a610 | 2026-03-31 10:00:00+0000 |
-| 616be2d4-d205-4278-ad6d  | dc880752-f900-4454-8993 | 6a6148d1-4a56-4d6a-a610 | 2022-08-06 15:00:00+0000 |
-| 549d7790-2aa1-4710-88d4  | 4c63cb26-f5f1-4ca3-bd62 | 79e9b9b4-8b76-4cb7-8419 | 2023-35-22 11:00:00+0000 |
-| b3420ae3-88b8-45f7-adc1  | 4e1e806b-872b-421e-a461 | cb923190-d658-4471-827d | 2025-10-03 12:00:00+0000 |
-| 0d7c6069-d250-431a-8573  | 8eabd71d-c1f0-4496-9415 | 8eabd71d-c1f0-4496-9415 | 2021-11-14 13:00:00+0000 |
-| 2f228bd5-a517-4214-8303  | f93925d8-79e6-461d-ace8 | 2c524549-09f0-4e8e-9afc | 2012-12-05 14:00:00+0000 |
+| livre_id                | emprunt_id              | utilisateur_id          | date_emprunt             |
+| ----------------------- | ----------------------- | ----------------------- | ------------------------ |
+| 549d7790-2aa1-4710-88d4 | 437c10d7-5508-4ecf-b821 | 6a6148d1-4a56-4d6a-a610 | 2026-03-31 10:00:00+0000 |
+| 616be2d4-d205-4278-ad6d | dc880752-f900-4454-8993 | 6a6148d1-4a56-4d6a-a610 | 2022-08-06 15:00:00+0000 |
+| 549d7790-2aa1-4710-88d4 | 4c63cb26-f5f1-4ca3-bd62 | 79e9b9b4-8b76-4cb7-8419 | 2023-35-22 11:00:00+0000 |
+| b3420ae3-88b8-45f7-adc1 | 4e1e806b-872b-421e-a461 | cb923190-d658-4471-827d | 2025-10-03 12:00:00+0000 |
+| 0d7c6069-d250-431a-8573 | 8eabd71d-c1f0-4496-9415 | 8eabd71d-c1f0-4496-9415 | 2021-11-14 13:00:00+0000 |
+| 2f228bd5-a517-4214-8303 | f93925d8-79e6-461d-ace8 | 2c524549-09f0-4e8e-9afc | 2012-12-05 14:00:00+0000 |
 
 ## Commandes CQL
 
@@ -67,30 +69,37 @@ Voici quelques exemples de commandes CQL pour interagir avec la base de données
 Cassandra définit des keyspaces pour regrouper les tables. Un keyspace est l'équivalent d'une base de données dans un système de gestion de base de données relationnelle. Les keyspaces ont des propriétés de réplication qui définissent comment les données sont répliquées sur les nœuds du cluster.
 
 - **Création d'un keyspace** :
+
 ```sql
 CREATE KEYSPACE biblio
 WITH replication = {'class': 'SimpleStrategy', 'replication_factor': 3};
 ```
 
 - **Changement de keyspace** :
+
 ```sql
 USE biblio ;
 ```
+
     L'instruction `USE` replace le keyspace courant par celui spécifié dans la requête.
     Ainsi, toutes les requêtes suivantes seront exécutées dans le keyspace `biblio`.
     Il n'est pas nécessaire de spécifier le keyspace dans les requêtes suivantes.
     On peut écrire directement `CREATE TABLE utilisateurs (...)` sans spécifier le keyspace.
 
 - **Liste des keyspaces** :
+
 ```sql
 DESCRIBE KEYSPACES;
 ```
+
     Cette commande permet de lister tous les keyspaces disponibles dans le cluster.
 
 - **Description d'un keyspace** :
+
 ```sql
 DESCRIBE KEYSPACE biblio;
 ```
+
     Cette commande permet de voir les détails du keyspace `biblio`.
 
 - **Suppression d'un keyspace** :
@@ -102,7 +111,8 @@ DESCRIBE KEYSPACE biblio;
 
 La création de tables en `CQL` est similaire à `SQL`. Il faut veiller à bien définir la clé primaire pour chaque table qui est essentielle pour la distribution des données dans le cluster.
 
-  - __Clé primaire simple__
+- **Clé primaire simple**
+
 ```sql
 CREATE TABLE biblio.utilisateurs (
     id UUID PRIMARY KEY,
@@ -110,9 +120,11 @@ CREATE TABLE biblio.utilisateurs (
     age INT
 );
 ```
-  Pour plus d'informations sur les types de données supportés par Apache Cassandra, vous pouvez consulter [la documentation](https://cassandra.apache.org/doc/4.1/cassandra/cql/types.html).
 
-  - __Clé primaire composite__
+Pour plus d'informations sur les types de données supportés par Apache Cassandra, vous pouvez consulter [la documentation](https://cassandra.apache.org/doc/4.1/cassandra/cql/types.html).
+
+- **Clé primaire composite**
+
 ```sql
 CREATE TABLE biblio.emprunts (
     livre_id UUID,
@@ -122,9 +134,11 @@ CREATE TABLE biblio.emprunts (
     PRIMARY KEY (emprunt_id, utilisateur_id)
 );
 ```
-  Ici nous avons une table qui possède deux colonnes comme clé primaire. Cela signifie que la combinaison de `emprunt_id` et `utilisateur_id` doit être unique.
 
-  - __Clé de clustering__
+Ici nous avons une table qui possède deux colonnes comme clé primaire. Cela signifie que la combinaison de `emprunt_id` et `utilisateur_id` doit être unique.
+
+- **Clé de clustering**
+
 ```sql
 CREATE TABLE biblio.emprunts (
     livre_id UUID,
@@ -134,26 +148,32 @@ CREATE TABLE biblio.emprunts (
     PRIMARY KEY ((emprunt_id, utilisateur_id), date_emprunt)
 ) WITH CLUSTERING ORDER BY (date_emprunt DESC);
 ```
-  Ici la clé primaire est composée de `emprunt_id` et `utilisateur_id`, et la clé de clustering est `date_emprunt`.
-  On ajoute `WITH CLUSTERING ORDER BY (date_emprunt DESC)` pour trier les données par ordre décroissant de `date_emprunt`.
+
+Ici la clé primaire est composée de `emprunt_id` et `utilisateur_id`, et la clé de clustering est `date_emprunt`.
+On ajoute `WITH CLUSTERING ORDER BY (date_emprunt DESC)` pour trier les données par ordre décroissant de `date_emprunt`.
 
 ### Manipulation de données
 
 Une fois que les données sont insérées dans le cluster, il est possible de les manipuler en utilisant des requêtes CQL via les clauses `SELECT`, `INSERT`, `UPDATE` et `DELETE`.
 
 - **Liste des tables** :
+
 ```sql
 DESCRIBE TABLES;
 ```
+
 Cette commande permet de lister toutes les tables du keyspace courant.
 
 - **Description d'une table** :
+
 ```sql
 DESCRIBE TABLE biblio.utilisateurs;
 ```
+
 Cette commande permet de voir les détails de la table `utilisateurs` du keyspace `biblio`.
 
 - **Insertion de données** :
+
   ```sql
   INSERT INTO biblio.utilisateurs (id, nom, age)
   VALUES (6a6148d1-4a56-4d6a-a610-cdf7b7e3b959, 'Alice', 30);
@@ -161,12 +181,15 @@ Cette commande permet de voir les détails de la table `utilisateurs` du keyspac
   INSERT INTO biblio.utilisateurs (id, nom, age)
   VALUES (uuid(), 'Bob', 23);
   ```
+
   Ici, l'identifiant de Bob est généré automatiquement par Cassandra via la fonction `uuid()`.
 
 - **Sélection de données** :
+
 ```sql
 SELECT nom, age FROM biblio.utilisateurs WHERE age > 35;
 ```
+
 Cette requête permet de sélectionner le nom et l'âge des utilisateurs de plus de 35 ans.
 
 <!--
@@ -179,21 +202,27 @@ Cette requête permet de sélectionner le nom et l'âge des utilisateurs de plus
 -->
 
 - **Mise à jour de données** :
+
 ```sql
 UPDATE biblio.utilisateurs SET age = 31 WHERE id = 6a6148d1-4a56-4d6a-a610-cdf7b7e3b959;
 ```
+
 Ici, on met à jour l'âge d'Alice (qui possède l'identifiant `6a6148d1-4a56-4d6a-a610-cdf7b7e3b959`) de 30 à 31 ans.
 
 - **Suppression de données** :
+
 ```sql
 DELETE FROM biblio.utilisateurs WHERE id = 6a6148d1-4a56-4d6a-a610-cdf7b7e3b959;
 ```
+
 De même, qu'il est possible de supprimer les données d'Alice de la table `utilisateurs`. Dans notre cas, il faudrait également supprimer les emprunts d'Alice dans la table `emprunts`.
 
 - **Suppression d'une table** :
+
 ```sql
 DROP TABLE IF EXISTS biblio.utilisateurs;
 ```
+
 Si l'on veut supprimer une table, il suffit d'utiliser la commande `DROP TABLE` comme en SQL.
 
 ### Index
@@ -201,11 +230,13 @@ Si l'on veut supprimer une table, il suffit d'utiliser la commande `DROP TABLE` 
 Les index peuvent être créés pour améliorer les performances des requêtes. Cela permet de rechercher plus rapidement les colonnes qui ne sont pas définies dans la clé de partitionnement.
 
 - **Création d'un index** :
+
 ```sql
 CREATE INDEX IF NOT EXISTS nom_index ON biblio.utilisateurs (nom);
 ```
 
 - **Suppression d'un index** :
+
 ```sql
 DROP INDEX IF EXISTS nom_index;
 ```
@@ -215,17 +246,19 @@ DROP INDEX IF EXISTS nom_index;
 > Il est important de bien choisir la clé de partition et la clé de clustering pour optimiser les performances de la base de données. Aussi, il peut être nécessaire de dupliquer les données pour répondre à différents types de requêtes.<br/>
 > <br/>
 > Toutes les colonnes qui sont dans la PRIMARY KEY doivent être utilisées dans la clause `WHERE` de la requête `SELECT`. Par exemple, si la clé primaire est composée de `id` et `nom`, la requête `SELECT` doit contenir ces deux colonnes dans la clause `WHERE`.
+>
 > ```sql
 > SELECT *
 > FROM biblio.utilisateurs
 > WHERE id = 6a6148d1-4a56-4d6a-a610-cdf7b7e3b959 AND nom = 'Alice';
 > ```
-{: .block-warning }
+>
+> {: .block-warning }
 
 Pour plus d'informations sur les commandes CQL, vous pouvez consulter la documentation officielle d'Apache Cassandra :
+
 - [Manipulation de données](https://cassandra.apache.org/doc/4.1/cassandra/cql/ddl.html) : CREATE, ALTER, DROP (table, keyspace)
 - [Requêtes](https://cassandra.apache.org/doc/4.1/cassandra/cql/dml.html) : SELECT, INSERT, UPDATE, DELETE
-
 
 # Initialisation d'une base de données
 
@@ -234,18 +267,25 @@ Pour ce TP, nous allons créer une base de données Apache Cassandra via **Docke
 Pour créer la base de données, il suffit d'exécuter les commandes suivantes dans votre terminal (PowerShell, Git bash, etc.) :
 
 1. Téléchargement de l'image Apache Cassandra en local.
+
 ```bash
 docker pull cassandra:latest
 ```
+
 2. Exécuter le serveur `cassandra` en local.
+
 ```bash
 docker run -d --rm --name cassandra -p 9042:9042 cassandra
 ```
+
 3. Ensuite, pour accéder à la base de données Cassandra, il faut exécuter la commande suivante :
+
 ```bash
 docker exec -it cassandra cqlsh
 ```
+
 Vous devriez voir une sortie similaire à celle-ci, indiquant que vous êtes connecté à la base de données Cassandra et que vous pouvez commencer à exécuter des commandes CQL (après le `cqlsh>`).
+
 ```bash
 Connected to Test Cluster at 127.0.0.1:9042
 [cqlsh 6.2.0 | Cassandra 5.0.6 | CQL spec 3.4.7 | Native protocol v5]
@@ -256,13 +296,16 @@ cqlsh>
 Ainsi, vous accédez à l'interface de ligne de commande de Cassandra, appelée `cqlsh`, qui vous permet d'exécuter des commandes CQL pour interagir avec la base de données. Vous pouvez écrire les commandes CQL directement dans l'interface après le prompt `cqlsh>`. Vous pouvez maintenant créer un keyspace, des tables et insérer des données dans votre base de données Cassandra en utilisant les commandes CQL présentées précédemment.
 
 > Il est possible que vous ayez une `Connection error` lors de l'exécution de la commande `docker exec -it cassandra cqlsh`. Si c'est le cas, attendez quelques secondes et réessayez la commande. Il faut un peu de temps pour que le conteneur Cassandra soit complètement opérationnel et prêt à accepter les connexions.
-{: .block-warning }
+> {: .block-warning }
 
 > Pour ceux qui sont à l'aise avec les notebooks Jupyter, il est également possible d'exécuter des commandes CQL directement dans un notebook en utilisant la bibliothèque `cassandra-driver` de Python. Vous pouvez installer cette bibliothèque via pip :
+>
 > ```bash
 > pip install cassandra-driver
 > ```
+>
 > Ensuite, vous pouvez utiliser le code suivant pour vous connecter à la base de données Cassandra et exécuter des commandes CQL :
+>
 > ```python
 > from cassandra.cluster import Cluster
 >
@@ -281,14 +324,15 @@ Ainsi, vous accédez à l'interface de ligne de commande de Cassandra, appelée 
 > for row in rows:
 >     print(row)
 > ```
-{: .block-example }
-
+>
+> {: .block-example }
 
 # Cas pratique
 
 ## Objectif
 
 L'objectif de ce TP est de se familiariser avec la base de données `Apache Cassandra` en réalisant les tâches suivantes :
+
 1. Création d'un keyspace et d'une table
 2. Insertion de données
 3. Requêtes sur les données
@@ -303,17 +347,17 @@ Dans ce TP, vous allez manipuler une base de données Apache Cassandra destinée
 
 La table `cas_medicaux` contient les informations des cas médicaux :
 
-| Colonne             | Description                       |
-|---------------------|-----------------------------------|
-| `id`                | Identifiant unique du cas médical |
-| `code_patho`        | Code de la pathologie             |
-| `date_diag`         | Date du diagnostic                |
-| `dept_code`         | Code du département               |
-| `dept_nom`          | Nom du département                |
-| `pathologie`        | Pathologie diagnostiquée          |
+| Colonne                  | Description                       |
+| ------------------------ | --------------------------------- |
+| `id`                     | Identifiant unique du cas médical |
+| `code_patho`             | Code de la pathologie             |
+| `date_diag`              | Date du diagnostic                |
+| `dept_code`              | Code du département               |
+| `dept_nom`               | Nom du département                |
+| `pathologie`             | Pathologie diagnostiquée          |
 | `patient_date_naissance` | Date de naissance du patient      |
-| `patient_prenom`    | Prénom du patient                 |
-| `patient_sexe`      | Sexe du patient                   |
+| `patient_prenom`         | Prénom du patient                 |
+| `patient_sexe`           | Sexe du patient                   |
 
 ---
 
@@ -321,13 +365,13 @@ La table `cas_medicaux` contient les informations des cas médicaux :
 
 La table `patients` contient les informations des patients :
 
-| Colonne         | Description                     |
-|-----------------|---------------------------------|
-| `id`            | Identifiant unique du patient   |
-| `prenom`        | Prénom du patient               |
-| `sexe`          | Sexe du patient                 |
-| `date_naissance`| Date de naissance du patient    |
-| `pathologies`   | Liste de pathologies du patient |
+| Colonne          | Description                     |
+| ---------------- | ------------------------------- |
+| `id`             | Identifiant unique du patient   |
+| `prenom`         | Prénom du patient               |
+| `sexe`           | Sexe du patient                 |
+| `date_naissance` | Date de naissance du patient    |
+| `pathologies`    | Liste de pathologies du patient |
 
 ---
 
@@ -347,27 +391,25 @@ Créez les tables `cas_medicaux` et `patients` dans le keyspace `hopital` avec l
 
 Insérer dans la table `cas_medicaux` les données du patient `23257`.
 
-| id     | code_patho | date_diag  | dept_code | dept_nom | pathologie         | patient_date_naissance | patient_prenom | patient_sexe |
-|--------|------------|------------|-----------|----------|--------------------|-------------------|----------------|--------------|
-| 23257  | addictions | 2021-01-12 |        72 |   Sarthe | Troubles addictifs |        1946-08-27 |        Christelle |            f |
-
+| id    | code_patho | date_diag  | dept_code | dept_nom | pathologie         | patient_date_naissance | patient_prenom | patient_sexe |
+| ----- | ---------- | ---------- | --------- | -------- | ------------------ | ---------------------- | -------------- | ------------ |
+| 23257 | addictions | 2021-01-12 | 72        | Sarthe   | Troubles addictifs | 1946-08-27             | Christelle     | f            |
 
 Puis, insérer dans la table `patients` les données suivantes :
 
-| id  | date_naissance | pathologies                                                                                                                                                                                                                                                                       | prenom  | sexe|
-|-----|----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|-----|
-| 403 | 1927-02-11     | [{'date': '2021-08-08', 'dept': '09', 'intitule': 'Maladies inflammatoires chroniques'}, {'date': '2023-04-11', 'dept': '09', 'intitule': 'Accident vasculaire cérébral'}, {'date': '2022-07-02', 'dept': '09', 'intitule': 'Maladies métaboliques, héréditaires ou amylose'}]   | Mireille |    f|
-
+| id  | date_naissance | pathologies                                                                                                                                                                                                                                                                    | prenom   | sexe |
+| --- | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------- | ---- |
+| 403 | 1927-02-11     | [{'date': '2021-08-08', 'dept': '09', 'intitule': 'Maladies inflammatoires chroniques'}, {'date': '2023-04-11', 'dept': '09', 'intitule': 'Accident vasculaire cérébral'}, {'date': '2022-07-02', 'dept': '09', 'intitule': 'Maladies métaboliques, héréditaires ou amylose'}] | Mireille | f    |
 
 Une fois les deux requêtes d'insertion effectuées, vous pouvez insérer les données contenues dans le fichier `init.cql` qui est téléchargeable <a href="/assets/code/init.cql" download>ici</a>.
 
 ### 4. Requêtes sur les données
 
-1) Afficher les 5 premiers cas médicaux.
+1. Afficher les 5 premiers cas médicaux.
 
-2) Afficher les patients ayant les identifiants `408` et `500`.
+2. Afficher les patients ayant les identifiants `408` et `500`.
 
-3) Quel est le résultat de la requête suivante ?
+3. Quel est le résultat de la requête suivante ?
 
 ```sql
 SELECT *
@@ -377,16 +419,16 @@ WHERE pathologie='Diabète';
 
 Est-elle valide ? Si non, que faire pour corriger cette requête ?
 
-4) Mettre à jour la pathologie du patient `66` pour remplacer `Diabète` par `Diabète de type 2` (champ `pathologie`).
+4. Mettre à jour la pathologie du patient `66` pour remplacer `Diabète` par `Diabète de type 2` (champ `pathologie`).
 
-5) Supprimer les informations concernant le cas médical `23265` (patient Clément).
+5. Supprimer les informations concernant le cas médical `23265` (patient Clément).
 
-6) Comment requêter les patients vivant dans le département de la Sarthe ? Que feriez-vous ?
+6. Comment requêter les patients vivant dans le département de la Sarthe ? Que feriez-vous ?
 
-7) Créer une nouvelle table `patients_pathologie_dept` avec les champs suivants :
+7. Créer une nouvelle table `patients_pathologie_dept` avec les champs suivants :
 
 | Colonne           | Type |
-|-------------------|------|
+| ----------------- | ---- |
 | `id`              | TEXT |
 | `prenom`          | TEXT |
 | `sexe`            | TEXT |
@@ -397,10 +439,9 @@ Est-elle valide ? Si non, que faire pour corriger cette requête ?
 
 Où `dept` est la clé primaire.
 
-8) Insérer les données des patients ayant des pathologies dans la table `patients_pathologie_dept` qui sont <a href="/assets/code/init_dept.cql" download>ici</a> puis répondre à la question 6.
+8. Insérer les données des patients ayant des pathologies dans la table `patients_pathologie_dept` qui sont <a href="/assets/code/init_dept.cql" download>ici</a> puis répondre à la question 6.
 
 :tada: Bravo, vous venez de requêter des données de santé stockées dans une base de données Apache Cassandra avec CQL !
-
 
 <!--
 

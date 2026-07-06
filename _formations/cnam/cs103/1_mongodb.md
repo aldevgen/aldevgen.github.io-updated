@@ -18,6 +18,7 @@ Durant le TP, nous allons utiliser différents outils. La première partie du TP
 
 Dans un premier temps, nous allons installer MongoDB Compass qui est une interface permettant de visualiser les données.
 Puis, dans un second temps, vous avez deux possibilités pour la gestion de la base de données :
+
 1. Utiliser Docker pour créer une base de données en local (recommandé).
 2. Instancier une base de données sur MongoDB Atlas (cloud).
 
@@ -29,6 +30,7 @@ Pour cela, cliquez sur le lien pour télécharger **MongoDB Compass Download (GU
 ## Configuration de la base de données avec Docker
 
 Téléchargement de l’image MongoDB en local.
+
 ```shell
 docker pull mongodb/mongodb-community-server:latest
 ```
@@ -69,7 +71,7 @@ Une fois sur la page des **Database access**, cliquez sur **Add new database use
 
 > :warning: Pensez à bien enregistrer le mot de passe dans un endroit sécurisé de votre ordinateur, nous en aurons besoin par la suite pour nous connecter à la base de données.
 >
-{: .block-warning }
+> {: .block-warning }
 
 {% include figure.liquid loading="eager" path="assets/img/cnam/mongodb/creation-user.png" title="Creation user" class="img-fluid rounded z-depth-1" %}
 
@@ -88,7 +90,7 @@ Nous prenons l'instance M0 qui est gratuite et donnons un nom à cette dernière
 {% include figure.liquid loading="eager" path="assets/img/cnam/mongodb/creation-cluster.png" title="Creation cluster" class="img-fluid rounded z-depth-1" %}
 
 > :warning: Il n'est possible de créer qu'**un seul cluster gratuit par compte**, donc si vous avez déjà créé un cluster gratuit avec ce compte, vous ne pourrez pas en créer un nouveau. Dans ce cas, vous devez supprimer le cluster existant avant d'en créer un nouveau.
-{: .block-warning }
+> {: .block-warning }
 
 ### Connexion au cluster Atlas
 
@@ -100,9 +102,9 @@ Sur la page suivante nous pouvons choisir le type de Driver, puis choisir **Pyth
 
 {% include figure.liquid loading="eager" path="assets/img/cnam/mongodb/mongodb-driver.png" title="MongoDB driver" class="img-fluid rounded z-depth-1" %}
 
-> Copiez la *connection string*, cela nous servira ensuite à nous connecter en Python à la base de données que nous venons de créer.
+> Copiez la _connection string_, cela nous servira ensuite à nous connecter en Python à la base de données que nous venons de créer.
 >
-{: .block-example }
+> {: .block-example }
 
 ## Connexion à MongoDB Compass
 
@@ -118,10 +120,10 @@ Ensuite, il faut connecter l'image locale Docker à MongoDB Compass. Pour cela, 
 
 ### Connexion à MongoDB Compass avec MongoDB Atlas
 
-La connexion va se faire via la *connection string* qui peut être trouvée dans la configuration du cluster Atlas.
+La connexion va se faire via la _connection string_ qui peut être trouvée dans la configuration du cluster Atlas.
 
 > :warning: N'oubliez pas de remplacer le mot de passe sur l'image ci-dessous par celui que vous avez enregistré plus haut et de remplacer `mon_super_mot_de_passe_genere` dans `mongodb+srv://user_mongo:mon_super_mot_de_passe_genere@cluster-cnam.douiht4.mongodb.net/?appName=cluster-cnam` (sans les <>).
-{: .block-warning }
+> {: .block-warning }
 
 {% include figure.liquid loading="eager" path="assets/img/cnam/mongodb/compass-add-connection.png" title="Compass add connection" class="img-fluid rounded z-depth-1" %}
 
@@ -132,13 +134,13 @@ Une fois ceci fait, nous allons créer une base de données appelée `tp` qui co
 {% include figure.liquid loading="eager" path="assets/img/cnam/mongodb/create-database-collection.png" title="Create database collection" class="img-fluid rounded z-depth-1" %}
 {% include figure.liquid loading="eager" path="assets/img/cnam/mongodb/create-database.png" title="Create database" class="img-fluid rounded z-depth-1" %}
 
-Enfin, il suffit d'importer le fichier `pathologies.json` en cliquant sur le bouton *Import JSON or CSV file* avec les données ci-jointes.
+Enfin, il suffit d'importer le fichier `pathologies.json` en cliquant sur le bouton _Import JSON or CSV file_ avec les données ci-jointes.
 
 <a class="download-btn"
     href="https://raw.githubusercontent.com/aldevgen/data/main/json/pathologies.json"
     download="pathologies.json"
     rel="noopener noreferrer">
-    <button><i class="fa fa-download"></i> Données pathologies</button>
+<button><i class="fa fa-download"></i> Données pathologies</button>
 </a>
 
 Cliquer sur le bouton puis enregistrer le fichier : Fichier > Enregistrer Sous ou Ctrl+S sur Windows/Linux ou Cmd+S sur Mac.
@@ -172,10 +174,7 @@ Voici un document de la base de données :
   "ntop": 210,
   "npop": 34660,
   "prev": 0.603,
-  "niveau_prioritaire": [
-    "2",
-    "3"
-  ],
+  "niveau_prioritaire": ["2", "3"],
   "libelle_classe_age": "de 45 à 49 ans",
   "libelle_sexe": "tous sexes",
   "tri": 32
@@ -192,7 +191,7 @@ first_doc = db.students.find(limit = 1)
 
 > Ici `students` est le nom de la collection. Dans notre cas, elle correspond à `pathologies`.
 >
-{: .block-example }
+> {: .block-example }
 
 L'objet retourné est un **curseur**, et non le résultat. Nous avons celui-ci lorsque nous utilisons `first_doc` dans une commande telle qu'une transformation en `list` par exemple.
 
@@ -213,6 +212,7 @@ La fonction `count_documents({})` permet de dénombrer les documents présents d
 ```python
 db.students.count_documents({})
 ```
+
 La fonction `estimated_document_count()` permet d'estimer le nombre de documents, cela est particulièrement utile lorsque la base de données
 est déployée sur plusieurs servers avec une grande quantité de données et qu'une estimation précise du volume de données n'est pas nécessaire.
 
@@ -229,15 +229,14 @@ Pour sélectionner les documents, nous allons utiliser le paramètre dans la fon
 - `{ condition1, condition2 }` : documents remplissant la condition 1 **ET** la condition 2
 - `"champs.sous_champs"` : permet d'accéder donc à un sous-champs d'un champs (que celui-ci soit un littéral ou un tableau)
 - `{ "champs": { "$opérateur": expression }}` : utilisation d'opérateurs dans la recherche
-    - `$in` : comparaison à un ensemble de valeurs
-    - `$gt`, `$gte`, `$lt`, `$lte`, `$ne` : comparaison (resp. *greater than*, *greater than or equal*, *less than*, *less than or equal*, *not equal*)
-
+  - `$in` : comparaison à un ensemble de valeurs
+  - `$gt`, `$gte`, `$lt`, `$lte`, `$ne` : comparaison (resp. _greater than_, _greater than or equal_, _less than_, _less than or equal_, _not equal_)
 
 > Les requêtes ci-dessous sont des exemples de requêtes sur une base de données fictive `students` à propos des étudiants et des cours qu'ils suivent à l'université.
 >
-{: .block-example }
+> {: .block-example }
 
-___Comptage de documents___
+**_Comptage de documents_**
 
 - Nombre d'étudiants de l'Université de Paris
 
@@ -251,7 +250,7 @@ db.students.count_documents({ "university": "Université de Paris" })
 db.students.count_documents({ "university": "Université de Paris", "course": "NoSQL" })
 ```
 
--  Nombre d'étudiants de l'Université de Paris ayant suivi le cours de NoSQL ou de Python
+- Nombre d'étudiants de l'Université de Paris ayant suivi le cours de NoSQL ou de Python
 
 ```python
 db.students.count_documents(
@@ -281,17 +280,19 @@ db.students.count_documents(
   }
 )
 ```
+
 Ici le champ `average` est inclus dans `grades` autrement dit, nous avons la structure de données suivante :
+
 ```json
 {
-    "grades" : [
-      {
-        "average" : 10,
-        "min" : 8,
-        "max" : 16,
-      }
-    ],
-    "..." : "..."
+  "grades": [
+    {
+      "average": 10,
+      "min": 8,
+      "max": 16
+    }
+  ],
+  "...": "..."
 }
 ```
 
@@ -322,14 +323,14 @@ db.students.distinct(
 )
 ```
 
-___Restriction et projection___
+**_Restriction et projection_**
 
-- Fonction `find()` pour réaliser les *restrictions* et *projections*
+- Fonction `find()` pour réaliser les _restrictions_ et _projections_
 - Plusieurs paramètres :
-    - Restriction (quels documents prendre) : même format que précédemment
-    - Projection (quels champs afficher)
-    - `limit` pour n'avoir que les $n$ premiers documents
-    - `sort` pour effectuer un tri des documents
+  - Restriction (quels documents prendre) : même format que précédemment
+  - Projection (quels champs afficher)
+  - `limit` pour n'avoir que les $n$ premiers documents
+  - `sort` pour effectuer un tri des documents
 
 Dans la fonction `find()`, pour choisir les champs à afficher, le deuxième paramètre permet de faire une projection avec les critères suivants :
 
@@ -337,7 +338,7 @@ Dans la fonction `find()`, pour choisir les champs à afficher, le deuxième par
 - `{ "champs": 1 }` : champs à afficher
 - `{ "champs": 0 }` : champs à ne pas afficher
 - Pas de mélange des 2 sauf pour l'identifiant interne à MongoDB (`_id`)
-    - `{ "_id": 0, "champs": 1, ...}`
+  - `{ "_id": 0, "champs": 1, ...}`
 
 Toujours dans la fonction `find()`, il est possible de faire le tri des documents, avec le paramètre `sort` qui prend un tuple composé d'un ou plusieurs tuples indiquant les critères de tri.
 
@@ -348,7 +349,7 @@ Toujours dans la fonction `find()`, il est possible de faire le tri des document
 Dans ces fonctions, on peut aussi limiter l'exploration à une partie, avec les paramètres suivant :
 
 - `limit` : restreint le nombre de résultats fournis
-- `skip` : ne considère pas les *n* premiers documents
+- `skip` : ne considère pas les _n_ premiers documents
 
 Notez le contenu des colonnes `address` et `grades`.
 
@@ -474,36 +475,38 @@ Dans la suite du TP, nous allons utiliser la collection `restaurants` de la base
 
 ```json
 {
- "address": {
-   "building": "8825",
-   "coord": [-73.8803827, 40.7643124],
-   "street": "Astoria Boulevard",
-   "zipcode": "11369"
- },
- "borough": "Queens",
- "cuisine": "American",
- "grades": [ {
-   "date": {"$date": "2014-11-15T00:00:00.000Z"},
-   "grade": "Z",
-   "score": 38
- },
- {
-   "date": {"$date": "2014-05-02T00:00:00.000Z"},
-   "grade": "A",
-   "score": 10
- },
- {
-   "date": {"$date": "2013-03-02T00:00:00.000Z"},
-   "grade": "A",
-   "score": 7
- },
- {
-   "date": {"$date": "2012-02-10T00:00:00.000Z"},
-   "grade": "A",
-   "score": 13
- }],
-   "name": "Brunos On The Boulevard",
-   "restaurant_id": "40356151"
+  "address": {
+    "building": "8825",
+    "coord": [-73.8803827, 40.7643124],
+    "street": "Astoria Boulevard",
+    "zipcode": "11369"
+  },
+  "borough": "Queens",
+  "cuisine": "American",
+  "grades": [
+    {
+      "date": { "$date": "2014-11-15T00:00:00.000Z" },
+      "grade": "Z",
+      "score": 38
+    },
+    {
+      "date": { "$date": "2014-05-02T00:00:00.000Z" },
+      "grade": "A",
+      "score": 10
+    },
+    {
+      "date": { "$date": "2013-03-02T00:00:00.000Z" },
+      "grade": "A",
+      "score": 7
+    },
+    {
+      "date": { "$date": "2012-02-10T00:00:00.000Z" },
+      "grade": "A",
+      "score": 13
+    }
+  ],
+  "name": "Brunos On The Boulevard",
+  "restaurant_id": "40356151"
 }
 ```
 
@@ -515,12 +518,12 @@ Il est possible de réaliser des calculs d'agrégats (somme, moyenne, minimum et
 >
 > Par exemple, si on fait un tri avant une restriction, le tri se fera sur l'ensemble des documents alors que si on fait la restriction avant le tri, ce dernier ne se fera que sur les documents restreints.
 >
-{: .block-example }
+> {: .block-example }
 
 Voici quelques-unes des opérations possibles :
 
 | Fonction       | Opération                                                                       |
-|-|---------------------------------------------------------------------------------|
+| -------------- | ------------------------------------------------------------------------------- |
 | `$limit`       | restriction à un petit nombre de documents (très utiles pour tester son calcul) |
 | `$sort`        | tri sur les documents                                                           |
 | `$match`       | restriction sur les documents à utiliser                                        |
@@ -570,7 +573,7 @@ pandas.DataFrame([first_restaurants_sorted_name])
 
 Filtrer les documents selon des critères, avec les mêmes règles que pour la fonction `find()`.
 
-- Idem en se restreignant à *Brooklyn* (5 restaurants)
+- Idem en se restreignant à _Brooklyn_ (5 restaurants)
 
 ```python
 brooklyn = db.restaurants.aggregate([
@@ -598,7 +601,7 @@ pandas.DataFrame([brooklyn])
 
 Le but de cette opération est d'**exploser** un tableau dans un document.
 
-> Un document avec un tableau à *n* éléments deviendra *n* documents avec chacun un des éléments du tableau en lieu et place de celui-ci.
+> Un document avec un tableau à _n_ éléments deviendra _n_ documents avec chacun un des éléments du tableau en lieu et place de celui-ci.
 
 Nous devons mettre le nom du tableau servant de base pour le découpage (précédé d'un `$`)
 
@@ -614,7 +617,7 @@ grades = db.restaurants.aggregate([
 pandas.DataFrame([grades])
 ```
 
-- Idem précédemment, en se restreignant à celle ayant eu *B*
+- Idem précédemment, en se restreignant à celle ayant eu _B_
 
 ```python
 grades_b = db.restaurants.aggregate([
@@ -636,14 +639,14 @@ grades_b = db.restaurants.aggregate([
 pandas.DataFrame([grades_b])
 ```
 
-`"$addFields"` et  `"$project"`
+`"$addFields"` et `"$project"`
 
 ---
 
 On peut redéfinir les documents en ajoutant des éléments (`$addFields`) ou en se restreignant à certains éléments (`$project`).
 
 - `{ "variable" : 1 }` : conservation du champ (0 si suppression, idem que dans `find()`, pas de mélange sauf pour `_id`)
-    - valable uniquement dans `$project`
+  - valable uniquement dans `$project`
 - `{ "variable": { "$opérateur" : expression }}` : permet de définir un nouveau champ
 - `{ "nouveau_champs": "$ancien_champs" }` : renommage d'un champ
 
@@ -654,7 +657,7 @@ Quelques opérateurs utiles pour la projection (plus d'info [ici](https://docs.m
 - `$last` : dernier élément du tableau
 - `$size` : taille d'un tableau
 - `$substr` : sous-chaîne de caractères
-- `$cond` : permet de faire une condition (équivalent de *if then else*)
+- `$cond` : permet de faire une condition (équivalent de _if then else_)
 - ...
 
 - On peut aussi vouloir ajouter un champ, comme ici le nombre d'évaluations
@@ -668,7 +671,7 @@ pandas.DataFrame([nb_grades])
 ```
 
 - On souhaite ici ne garder que le nom et le quartier des 10 premiers restaurants
-    - Notez l'ordre (alphabétique) des variables, et pas celui de la déclaration
+  - Notez l'ordre (alphabétique) des variables, et pas celui de la déclaration
 
 ```python
 name_borough = db.restaurants.aggregate([
@@ -754,8 +757,8 @@ first_letters_borough = db.restaurants.aggregate([
 pandas.DataFrame([first_letters_borough])
 ```
 
-- On fait de même, mais on met en majuscule et on note *BRX* pour le *Bronx*
-    - on garde le quartier d'origine pour vérification ici
+- On fait de même, mais on met en majuscule et on note _BRX_ pour le _Bronx_
+  - on garde le quartier d'origine pour vérification ici
 
 ```python
 first_letters_bronx = db.restaurants.aggregate([
@@ -777,14 +780,14 @@ pandas.DataFrame([first_letters_bronx])
 Cet opérateur permet le calcul d'agrégats tel qu'on le connaît.
 
 - `_id` : déclaration du critère de regroupement
-    - chaîne de caractères : pas de regroupement (tous les documents)
-    - `$champs` : regroupement selon ce champ
-    - `{ "a1": "$champs1", ... }` : regroupement multiple (avec possibilité de modification des valeurs)
+  - chaîne de caractères : pas de regroupement (tous les documents)
+  - `$champs` : regroupement selon ce champ
+  - `{ "a1": "$champs1", ... }` : regroupement multiple (avec possibilité de modification des valeurs)
 - Calculs d'agrégats à faire :
-    - `$sum` : somme (soit de valeur fixe - 1 pour faire un décompte donc, soit d'un champ spécifique)
-    - `$avg, $min, $max`
-    - `$addToSet` : regroupement des valeurs distinctes d'un champ dans un tableau
-    - `$push` : aggrégation de champs dans un tableau
+  - `$sum` : somme (soit de valeur fixe - 1 pour faire un décompte donc, soit d'un champ spécifique)
+  - `$avg, $min, $max`
+  - `$addToSet` : regroupement des valeurs distinctes d'un champ dans un tableau
+  - `$push` : aggrégation de champs dans un tableau
 
 - On calcule ici le nombre total de restaurants
 
@@ -804,7 +807,7 @@ nb_borough = db.restaurants.aggregate([
 pandas.DataFrame([nb_borough])
 ```
 
-- Moyenne des notes des restaurants du *Queens*
+- Moyenne des notes des restaurants du _Queens_
 
 ```python
 avg_queens = db.restaurants.aggregate([
@@ -815,7 +818,7 @@ avg_queens = db.restaurants.aggregate([
 pandas.DataFrame([avg_queens])
 ```
 
--  Il est bien évidemment possible de faire ce calcul par quartier et de les trier selon les notes obtenues (ici dans l'ordre décroissant)
+- Il est bien évidemment possible de faire ce calcul par quartier et de les trier selon les notes obtenues (ici dans l'ordre décroissant)
 
 ```python
 avg_queens_sorted = db.restaurants.aggregate([
@@ -827,7 +830,7 @@ pandas.DataFrame([avg_queens_sorted])
 ```
 
 - On peut aussi faire un regroupement par quartier et par rue (en ne prenant que la première évaluation - qui est la dernière en date a priori), pour afficher les 10 rues où on mange le plus sainement.
-    - Notez que le premier `$match` permet de supprimer les restaurants sans évaluations (ce qui engendrerait des moyennes = `NA`)
+  - Notez que le premier `$match` permet de supprimer les restaurants sans évaluations (ce qui engendrerait des moyennes = `NA`)
 
 ```python
 avg_borough_street = db.restaurants.aggregate([
@@ -848,8 +851,8 @@ pandas.DataFrame([avg_borough_street])
 ```
 
 - Pour comprendre la différence entre `$addToSet` et `$push`, on les applique sur les grades obtenus pour les 10 premiers restaurants
-    - `$addToSet` : valeurs distinctes
-    - `$push` : toutes les valeurs présentes
+  - `$addToSet` : valeurs distinctes
+  - `$push` : toutes les valeurs présentes
 
 ```python
 push_to_set = db.restaurants.aggregate([
@@ -863,6 +866,7 @@ push_to_set = db.restaurants.aggregate([
 ])
 pandas.DataFrame([push_to_set])
 ```
+
 `$sortBycount`
 
 ---

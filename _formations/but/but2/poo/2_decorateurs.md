@@ -53,7 +53,7 @@ classDiagram
 Définissez une classe `Gift` qui permet de représenter un cadeau, caractérisé par sa taille. Les cadeaux sont classés en trois catégories : Small, Medium et Large qui ont les caractéristiques suivantes :
 
 | Taille | Poids | Temps d'emballage |
-|--------|-------|-------------------|
+| ------ | ----- | ----------------- |
 | Small  | 1 kg  | 1 seconde         |
 | Medium | 2 kg  | 3 secondes        |
 | Large  | 5 kg  | 10 secondes       |

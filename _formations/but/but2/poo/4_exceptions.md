@@ -19,13 +19,14 @@ L'objectif de ce TP est de vous familiariser avec les bonnes pratiques de dével
 > :warning: Bonnes pratiques de développement
 >
 > Veillez à mettre en pratique les bonnes pratiques de développement suivantes :
+>
 > - **Gestion des exceptions** : utilisez des exceptions pour gérer les erreurs et les cas limites.
 > - **Tests unitaires** : créez des tests unitaires pour valider le bon fonctionnement de votre code.
 > - **Documentation** : documentez votre code pour expliquer son fonctionnement et son utilisation.
 > - **Type hints** : utilisez les annotations de type pour spécifier les types des paramètres et des valeurs de retour.
 >
 > Tous ces éléments seront pris en compte dans le TP noté. :wink:
-{: .block-warning }
+> {: .block-warning }
 
 ---
 
@@ -34,6 +35,7 @@ L'objectif de ce TP est de vous familiariser avec les bonnes pratiques de dével
 ### Contexte
 
 On veut représenter des figures géométriques :
+
 - Un **point** est défini par ses coordonnées `x` et `y`.
 - Un **segment** est défini par deux points.
 - Un **triangle** est défini par trois points.
@@ -123,23 +125,27 @@ classDiagram
 ```
 
 **Question 1** : Implémenter une classe `Pokemon` avec les attributs suivants :
+
 - `nom` : le nom du Pokémon.
 - `type` : le type élémentaire du Pokémon (ex: Feu, Eau, Plante).
-- `hp` : *hit points* qui correspondent aux points de vie (PV) du Pokémon qui doivent être ≥ 0.
+- `hp` : _hit points_ qui correspondent aux points de vie (PV) du Pokémon qui doivent être ≥ 0.
 - `attack` : la puissance d’attaque du Pokémon (doit être ≥ 0).
 
 💡 **Exception à coder :** Créer une exception `IncorrectPokemonException` qui sera levée si les PV ou l’attaque sont négatifs.
 
 Ajouter les méthodes suivantes :
+
 - `__str__()` : afficher les infos du Pokémon.
 - `fight(other: Pokemon)` : réduire les PV de l’autre Pokémon en fonction de l’attaque.
 - S’assurer que `hp` et `attack` sont positifs ; sinon lever une exception `IncorrectPokemonException`.
 
 **Question 2** : Tests avec `unittest` :
+
 - Vérifier que la création d’un Pokémon avec une attaque ou des PV négatifs lève bien une exception.
 - Tester la méthode `fight()` en s’assurant que les PV sont bien réduits après un coup.
 
 **Question 3** : Ajouter une classe `PokemonTrainer` (dresseur) qui possède une équipe de Pokémon.
+
 - Implémenter une méthode pour choisir un Pokémon et le faire combattre.
 - Gérer le cas où un Pokémon est KO avec une exception `IncorrectPokemonException`.
 
@@ -268,14 +274,12 @@ classDiagram
 :warning: **Attention** : Chaque classe doit être bien documentée avec des commentaires pour expliquer les attributs et les méthodes.
 
 1. **Créer une classe `Vehicle`** (fichier `vehicle.py`) :
-
    - Cette classe représente un véhicule générique avec des attributs pour la marque, le modèle, l'année et le kilométrage.
    - Elle doit contenir une méthode `drive(km: int)` qui ajoute les kilomètres au kilométrage existant.
    - Elle doit contenir une méthode spéciale `__str__()` qui affiche les informations du véhicule.
      <br/><br/>
 
 2. **Créer deux sous-classes de `Vehicle`** (fichiers `car.py` et `truck.py`) :
-
    - **`Car`** :
      - Ajoute un attribut `doors` pour le nombre de portes.
      - Contient une méthode `description()` qui retourne une description spécifique.
@@ -285,14 +289,12 @@ classDiagram
        <br/><br/>
 
 3. **Créer une classe `Fleet`** (fichier `fleet.py`) :
-
    - Cette classe représente une flotte contenant une collection de véhicules.
    - Elle doit contenir une méthode `add_vehicle(vehicle: Vehicle)` pour ajouter un véhicule à la flotte.
    - Elle doit contenir une méthode `show_fleet()` pour afficher les informations de tous les véhicules.
      <br/><br/>
 
 4. **Créer une classe `Doors`** (fichier `doors.py`) :
-
    - Cette classe représente le nombre de portes d'un véhicule.
    - Attributs :
      - `num_doors` : un entier représentant le nombre de portes du véhicule, qui doit être compris entre 2 et 5.
@@ -302,20 +304,17 @@ classDiagram
        <br/><br/>
 
 5. **Modifier la classe `Vehicle` pour inclure des portes** :
-
    - Ajoutez un attribut `doors` qui est une instance de la classe `Doors`.
    - Adaptez la méthode `__str__()` pour inclure les informations sur les portes en appelant `doors.description()`.
      <br/><br/>
 
 6. **Implémenter les méthodes spéciales pour comparer des véhicules** :
-
    - Ajoutez les méthodes suivantes dans la classe `Vehicle` :
      - `__eq__(self, other)` : permet de comparer l'égalité des véhicules en fonction du kilométrage.
      - `__lt__(self, other)` : permet de comparer si un véhicule a moins de kilométrage qu'un autre.
      - `__gt__(self, other)` : permet de comparer si un véhicule a plus de kilométrage qu'un autre.
 
 7. **Créer un programme principal `main.py`** :
-
    - Créer les véhicules suivants :
      - Voiture 1 : Toyota, Corolla, 2018, 50000 km, 4 portes.
      - Voiture 2 : Honda, Civic, 2015, 80000 km, 2 portes.
@@ -325,7 +324,6 @@ classDiagram
    - Comparer les deux voitures en fonction de leur kilométrage (utiliser les méthodes `==`, `<`, `>`).
    - Simuler la conduite d'un véhicule en ajoutant des kilomètres au kilométrage de la voiture 1.
    - Afficher à nouveau les informations du véhicule après la conduite.
-
 
 ## Exercice 5 : gestion des employés d'un restaurant
 
