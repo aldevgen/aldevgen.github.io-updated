@@ -12,7 +12,7 @@ mermaid:
   zoomable: true
 ---
 
-# Séance 3
+# Migration
 
 La première séance a permis de se familiariser avec la base de données _ClassicModel_. Durant la deuxième séance nous avons sélectionné la base de données NoSQL ainsi que son architecture cible.
 

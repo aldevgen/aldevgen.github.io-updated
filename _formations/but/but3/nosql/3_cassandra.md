@@ -12,4 +12,4 @@ mermaid:
   zoomable: true
 ---
 
-# Apache Cassandra
+# Introduction à Apache Cassandra

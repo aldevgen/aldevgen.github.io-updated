@@ -4,7 +4,7 @@ title: Formations
 permalink: /formations/
 description: >
   Ressources pédagogiques pour les étudiant·es du BUT Science des Données
-  et les auditeurs du certificat CS103 Intelligence Artificielle en Santé du Cnam
+  et les auditeur·rices du certificat CS103 Intelligence Artificielle en Santé du Cnam
 nav: true
 nav_order: 1
 display_categories:

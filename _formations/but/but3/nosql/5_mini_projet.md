@@ -5,7 +5,7 @@ title: TP5
 description: Mini-projet
 category: BUT 3 - Des bases de données distribuées au NoSQL
 visible: true
-img:
+img: /assets/img/mini_project.jpeg
 tabs: true
 mermaid:
   enabled: true

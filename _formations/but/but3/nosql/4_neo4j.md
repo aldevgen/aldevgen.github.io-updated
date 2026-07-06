@@ -12,4 +12,4 @@ mermaid:
   zoomable: true
 ---
 
-# Neo4j
+# Introduction à Neo4j

@@ -12,4 +12,4 @@ mermaid:
   zoomable: true
 ---
 
-# Agrégation avec MongoDB
+# Requêtage et agrégation avec MongoDB

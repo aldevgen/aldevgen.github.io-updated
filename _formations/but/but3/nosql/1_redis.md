@@ -12,4 +12,4 @@ mermaid:
   zoomable: true
 ---
 
-# Redis
+# Introduction à Redis
