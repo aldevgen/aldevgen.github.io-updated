@@ -14,8 +14,18 @@ mermaid:
 
 # Qu'est-ce que Docker ?
 
-Conteneurisation
+## Conteneurisation
 
-Docker images
+Le concept cœur autour de Docker est la **conteneurisation**, qui consiste à empaqueter une application avec toutes ses dépendances dans un conteneur léger et portable.
 
-Docker container
+Une image de conteneur ne contient que les bibliothèques nécessaires au composant logiciel conteneurisé
+
+```bash
+# lister les images locales
+docker images
+```
+
+```bash
+# lister les conteneurs en cours d'exécution
+docker container
+```

@@ -401,7 +401,7 @@ Puis, insérer dans la table `patients` les données suivantes :
 | --- | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------- | ---- |
 | 403 | 1927-02-11     | [{'date': '2021-08-08', 'dept': '09', 'intitule': 'Maladies inflammatoires chroniques'}, {'date': '2023-04-11', 'dept': '09', 'intitule': 'Accident vasculaire cérébral'}, {'date': '2022-07-02', 'dept': '09', 'intitule': 'Maladies métaboliques, héréditaires ou amylose'}] | Mireille | f    |
 
-Une fois les deux requêtes d'insertion effectuées, vous pouvez insérer les données contenues dans le fichier `init.cql` qui est téléchargeable <a href="/assets/code/init.cql" download>ici</a>.
+Une fois les deux requêtes d'insertion effectuées, vous pouvez insérer les données contenues dans le fichier `init.cql` qui est téléchargeable <a href="../../../assets/code/init.cql" download>ici</a>.
 
 ### 4. Requêtes sur les données
 
@@ -439,7 +439,7 @@ Est-elle valide ? Si non, que faire pour corriger cette requête ?
 
 Où `dept` est la clé primaire.
 
-8. Insérer les données des patients ayant des pathologies dans la table `patients_pathologie_dept` qui sont <a href="/assets/code/init_dept.cql" download>ici</a> puis répondre à la question 6.
+8. Insérer les données des patients ayant des pathologies dans la table `patients_pathologie_dept` qui sont <a href="../../../assets/code/init_dept.cql" download>ici</a> puis répondre à la question 6.
 
 :tada: Bravo, vous venez de requêter des données de santé stockées dans une base de données Apache Cassandra avec CQL !
 
